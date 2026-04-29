@@ -1,92 +1,14 @@
-body{
-    display:flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: rgb(255, 255, 255);
-}
-.navbar{
-    display: flex;
-    justify-content:space-evenly;
-    width:80%;
-    height:5vh;
-    align-items: center;
-    background-color: rgba(102, 176, 241, 1);
-    color: white;
-    border-radius:45px;
-}
+body { display: flex; align-items: center; flex-direction: column; background-color: white; font-family: 'Segoe UI', sans-serif; padding-top: 20px; }
+.navbar { display: flex; justify-content: space-evenly; width: 85%; background-color: #66b0f1; border-radius: 45px; padding: 10px; align-items: center; }
 
-#logo{
-    width:40px;
-    height:auto;
-    filter: invert(30%) sepia(100%) saturate(500%) hue-rotate(200deg);
-}
+/* The Logo Requirement */
+#logo { width: 50px; cursor: pointer; }
 
-.navbarbuttons{
-    background-color:rgba(240, 255, 255, .3);
-    border:none;
-    width:100px;
-    border-radius:45px;
-    backdrop-filter: 5px;
-    color:aliceblue;
-}
-
-.content,.homecontent{
-    display:block;
-    align-items: center;
-}
-
-.contenttitle,.label,.btns,.splash{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(102, 176, 241); 
-
-}
-
-.splash{
-    font-style: italic;
-}
-
-.label,.field,.btns{
-    margin-top:10px;
-}
-
-.label {
-    display: inline-block;
-    width: 150px; 
-    font-weight: bold;
-}
-
-.field {
-    display: inline-block;
-    width: 250px; 
-    padding: 5px;
-    box-sizing: border-box; 
-}
-
-.btns{
-    width:182px;
-    padding:3px;
-}
-
-#btncontainer{
-    display:flex;
-    gap:20px;
-}
-
-/* For the insertion success message */
-#success-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: opacity 0.5s ease-in-out;
-    z-index: 1000;
-}
-
-.toast-hidden {
-    display: none;
-    opacity: 0;
-}
+.navbarbuttons { background-color: rgba(255, 255, 255, .3); border: none; width: 100px; border-radius: 45px; color: white; cursor: pointer; height: 30px; }
+.content, .homecontent { width: 80%; margin-top: 50px; }
+.contenttitle, .label, .btns, .splash { color: #66b0f1; }
+.label { display: inline-block; width: 150px; font-weight: bold; margin-top: 10px; }
+.field { width: 250px; padding: 5px; margin-top: 10px; }
+.btns { cursor: pointer; border: 1px solid #66b0f1; background: white; padding: 5px 15px; margin-top: 15px; }
+#btncontainer { display: flex; gap: 20px; }
+table th, table td { padding: 10px; border: 1px solid #66b0f1; text-align: left; }
