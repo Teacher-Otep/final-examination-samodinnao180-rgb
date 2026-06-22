@@ -1,38 +1,94 @@
-//fucntion to show selected section
-function showSection(sectionID){
-    //initially, select all sections
-    // use querySelectorAll for all sections with class content and homecontent
-    const sections = document.querySelectorAll('.content');
-    const homesection = document.querySelectorAll('.homecontent');
-
-    //hide the resulting content sections using foreach
-    sections.forEach(section => {
-        section.style.display='none';
-    });
+const API = "../includes/api.php";
 
 
-    //select the section that would
-    //be displayed when clicked
-    const activeSection = document.getElementById(sectionID);
-    if(activeSection){
-        activeSection.style.display='block';
-    }
+function showSection(id){
+    document.querySelectorAll('.content, .homecontent')
+        .forEach(s => s.style.display = 'none');
+
+    document.getElementById(id).style.display = 'block';
 }
 
-//for the insertion success
-window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('status') === 'success') {
-        const toast = document.getElementById('success-toast');
-        toast.classList.remove('toast-hidden');
-        
-        // Hide it automatically after 3 seconds
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.classList.add('toast-hidden'), 500);
-        }, 3000);
+function showHome(){
+    showSection('home');
+}
 
-        // Clean the URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
+
+function addStudent(){
+    const data = {
+        surname: document.getElementById('surname').value,
+        name: document.getElementById('name').value,
+        middlename: document.getElementById('middlename').value,
+        address: document.getElementById('address').value,
+        contact: document.getElementById('contact').value
+    };
+
+    fetch(API, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert("Student Added!");
+        loadStudents();
+    });
+}
+
+
+function loadStudents(){
+    showSection('read');
+
+    fetch(API)
+    .then(res => res.json())
+    .then(data => {
+        const tbody = document.querySelector("#table tbody");
+        tbody.innerHTML = "";
+
+        data.forEach(s => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${s.id}</td>
+                    <td>${s.surname}, ${s.name} ${s.middlename}</td>
+                    <td>
+                        <button onclick="edit(${s.id}, '${s.name}', '${s.surname}', '${s.middlename}', '${s.address}', '${s.contact_number}')">Update</button>
+                        <button onclick="del(${s.id})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
+    });
+}
+
+
+function del(id){
+    if(!confirm("Delete this student?")) return;
+
+    fetch(API + "?id=" + id, { method: "DELETE" })
+    .then(() => {
+        alert("Deleted!");
+        loadStudents();
+    });
+}
+
+
+function edit(id, name, surname, middlename, address, contact){
+    const newName = prompt("Name:", name);
+    const newSurname = prompt("Surname:", surname);
+    const newMiddle = prompt("Middle Name:", middlename);
+    const newAddress = prompt("Address:", address);
+    const newContact = prompt("Contact:", contact);
+
+    fetch(API, {
+        method: "PUT",
+        body: JSON.stringify({
+            id: id,
+            name: newName,
+            surname: newSurname,
+            middlename: newMiddle,
+            address: newAddress,
+            contact: newContact
+        })
+    })
+    .then(() => {
+        alert("Updated!");
+        loadStudents();
+    });
 }

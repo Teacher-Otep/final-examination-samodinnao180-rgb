@@ -1,32 +1,58 @@
 <?php
+require_once 'db.php';
 
-require_once __DIR__ . '/db.php';
+header('Content-Type: application/json');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'] ?? '';
-    $surname = $_POST['surname'] ?? '';
-    $middlename = $_POST['middlename'] ?? '';
-    $address = $_POST['address'] ?? '';
-    $contact = $_POST['contact'] ?? '';
+$method = $_SERVER['REQUEST_METHOD'];
 
-    try {
-        $sql = "INSERT INTO students (name, surname, middlename, address, contact_number) 
+switch ($method) {
+
+    case 'GET': 
+        $stmt = $pdo->query("SELECT * FROM students ORDER BY id DESC");
+        echo json_encode($stmt->fetchAll());
+        break;
+
+    case 'POST':
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $sql = "INSERT INTO students (name, surname, middlename, address, contact_number)
                 VALUES (:name, :surname, :middlename, :address, :contact)";
         
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':name'       => $name,
-            ':surname'    => $surname,
-            ':middlename' => $middlename,
-            ':address'    => $address,
-            ':contact'    => $contact
+            ':name' => $data['name'],
+            ':surname' => $data['surname'],
+            ':middlename' => $data['middlename'],
+            ':address' => $data['address'],
+            ':contact' => $data['contact']
         ]);
 
-        header("Location: ../public/index.php?status=success");
-        exit();
-        
-    } catch (PDOException $e) {
-        echo "Database Error: " . $e->getMessage();
-    }
+        echo json_encode(["status" => "success"]);
+        break;
+
+    case 'PUT': 
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $sql = "UPDATE students SET name=?, surname=?, middlename=?, address=?, contact_number=? WHERE id=?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $data['name'],
+            $data['surname'],
+            $data['middlename'],
+            $data['address'],
+            $data['contact'],
+            $data['id']
+        ]);
+
+        echo json_encode(["status" => "updated"]);
+        break;
+
+    case 'DELETE': 
+        parse_str($_SERVER['QUERY_STRING'], $params);
+
+        $stmt = $pdo->prepare("DELETE FROM students WHERE id=?");
+        $stmt->execute([$params['id']]);
+
+        echo json_encode(["status" => "deleted"]);
+        break;
 }
-?>

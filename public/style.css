@@ -1,14 +1,70 @@
-body { display: flex; align-items: center; flex-direction: column; background-color: white; font-family: 'Segoe UI', sans-serif; padding-top: 20px; }
-.navbar { display: flex; justify-content: space-evenly; width: 85%; background-color: #66b0f1; border-radius: 45px; padding: 10px; align-items: center; }
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
+    font-family:Arial;
+}
 
-/* The Logo Requirement */
-#logo { width: 50px; cursor: pointer; }
+.container{
+    width:80%;
+}
 
-.navbarbuttons { background-color: rgba(255, 255, 255, .3); border: none; width: 100px; border-radius: 45px; color: white; cursor: pointer; height: 30px; }
-.content, .homecontent { width: 80%; margin-top: 50px; }
-.contenttitle, .label, .btns, .splash { color: #66b0f1; }
-.label { display: inline-block; width: 150px; font-weight: bold; margin-top: 10px; }
-.field { width: 250px; padding: 5px; margin-top: 10px; }
-.btns { cursor: pointer; border: 1px solid #66b0f1; background: white; padding: 5px 15px; margin-top: 15px; }
-#btncontainer { display: flex; gap: 20px; }
-table th, table td { padding: 10px; border: 1px solid #66b0f1; text-align: left; }
+
+.navbar{
+    display:flex;
+    justify-content:space-around;
+    background:#66b0f1;
+    padding:10px;
+    border-radius:20px;
+    align-items:center;
+}
+
+#logo{
+    width:40px;
+    cursor:pointer;
+}
+
+/* SECTIONS */
+.content,.homecontent{
+    display:none;
+    text-align:center;
+    margin-top:20px;
+}
+
+#home{
+    display:block;
+}
+
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    margin:20px 0;
+}
+
+input{
+    width:250px;
+    padding:8px;
+}
+
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+td,th{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+button{
+    padding:6px 10px;
+    cursor:pointer;
+}
