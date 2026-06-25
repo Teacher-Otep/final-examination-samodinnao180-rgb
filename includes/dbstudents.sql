@@ -7,11 +7,9 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
--- Database: `dbstudents`
 CREATE DATABASE IF NOT EXISTS `dbstudents`;
 USE `dbstudents`;
 
--- Table structure for table `students`
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
