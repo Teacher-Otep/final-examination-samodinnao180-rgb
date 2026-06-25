@@ -3,7 +3,7 @@ $host = '127.0.0.1';
 $db   = 'dbstudents';  
 $user = 'root';        
 $pass = '';            
-$port = '3306';       
+$port = '3308';       
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
