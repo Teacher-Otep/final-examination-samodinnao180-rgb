@@ -1,92 +1,33 @@
-body{
-    display:flex;
-    justify-content: center;
-    flex-direction: column;
-    background-color: rgb(255, 255, 255);
+:root {
+    --bg: #0b0c10;
+    --card-bg: #1f2833;
+    --neon-cyan: #66fcf1;
+    --text: #ffffff;
+    --danger: #ff0055;
 }
-.navbar{
-    display: flex;
-    justify-content:space-evenly;
-    width:80%;
-    height:5vh;
-    align-items: center;
-    background-color: rgba(102, 176, 241, 1);
-    color: white;
-    border-radius:45px;
-}
-
-#logo{
-    width:40px;
-    height:auto;
-    filter: invert(30%) sepia(100%) saturate(500%) hue-rotate(200deg);
-}
-
-.navbarbuttons{
-    background-color:rgba(240, 255, 255, .3);
-    border:none;
-    width:100px;
-    border-radius:45px;
-    backdrop-filter: 5px;
-    color:aliceblue;
-}
-
-.content,.homecontent{
-    display:block;
-    align-items: center;
-}
-
-.contenttitle,.label,.btns,.splash{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(102, 176, 241); 
-
-}
-
-.splash{
-    font-style: italic;
-}
-
-.label,.field,.btns{
-    margin-top:10px;
-}
-
-.label {
-    display: inline-block;
-    width: 150px; 
-    font-weight: bold;
-}
-
-.field {
-    display: inline-block;
-    width: 250px; 
-    padding: 5px;
-    box-sizing: border-box; 
-}
-
-.btns{
-    width:182px;
-    padding:3px;
-}
-
-#btncontainer{
-    display:flex;
-    gap:20px;
-}
-
-/* For the insertion success message */
-#success-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: opacity 0.5s ease-in-out;
-    z-index: 1000;
-}
-
-.toast-hidden {
-    display: none;
-    opacity: 0;
-}
+body { margin: 0; font-family: 'Share Tech Mono', monospace; background-color: var(--bg); color: var(--text); }
+.navbar { background-color: var(--card-bg); padding: 1.2rem 0; border-bottom: 3px solid var(--neon-cyan); }
+.nav-container { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; color: var(--neon-cyan); cursor: pointer; font-weight: bold; }
+.nav-btn { background: transparent; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); margin-left: 1rem; cursor: pointer; padding: 8px 18px; border-radius: 0px; font-weight: bold; }
+.nav-btn:hover { background-color: var(--neon-cyan); color: var(--bg); box-shadow: 0 0 12px var(--neon-cyan); }
+.main-container { width: 90%; max-width: 800px; margin: 4rem auto; }
+.card { background: var(--card-bg); padding: 2.5rem; border-radius: 0px; border: 1px solid #333; box-shadow: -6px 6px 0px var(--neon-cyan); }
+.contenttitle { margin-top: 0; color: var(--neon-cyan); }
+.splash { font-size: 3rem; color: var(--danger); text-shadow: 0 0 10px var(--danger); text-align: center; }
+.homecontent p { text-align: center; color: #858585; }
+.form-grid { display: flex; flex-direction: column; gap: 15px; }
+.input-group { display: flex; flex-direction: column; }
+.input-group label { margin-bottom: 5px; color: var(--neon-cyan); }
+input { padding: 12px; background: #000; border: 1px solid #444; color: #fff; border-radius: 0px; font-family: inherit; }
+input:focus { border-color: var(--neon-cyan); outline: none; }
+.btn-row { display: flex; gap: 15px; }
+.btn-pri { background: var(--danger); color: white; border: none; padding: 12px 24px; font-weight: bold; cursor: pointer; flex: 1; border-radius: 0px; }
+.btn-sec { background: #333; color: white; border: none; padding: 12px 24px; cursor: pointer; border-radius: 0px; }
+table { width: 100%; border-collapse: collapse; }
+th { background: #111; color: var(--neon-cyan); padding: 12px; text-align: left; }
+td { padding: 12px; border-bottom: 1px solid #333; }
+.delete-item { display: flex; justify-content: space-between; padding: 12px; border-bottom: 1px solid #333; align-items: center; }
+.btn-del { color: var(--danger); text-decoration: none; border: 1px solid var(--danger); padding: 5px 10px; }
+.btn-del:hover { background: var(--danger); color: black; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--neon-cyan); color: black; padding: 12px 30px; display: none; font-weight: bold; }
